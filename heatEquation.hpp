@@ -11,19 +11,42 @@
 #include <vector>
 #include <set>
 
+
 /**
  * @class heatEquationBase
  * @brief classe de base pour les équations de la chaleur
  * elle gère les informations qu'on retrouvera pour l'équation de la chaleur peu importe le cas
  * 
  */
+template<std::size_t d>
 class heatEquationBase {
-    private: 
+    protected: 
         int nb_points_discretisation_ ; /*!<Nombre de points de discrétisation en espace et en temps*/
         double longueur_ ; /*!<longueur L de l'objet */
         double t_max_ ; /*!<temps maximum*/
-        double source_chaleur_ ; /*!<source de chaleur F */
+        std::vector<double> source_chaleur_ ; /*!<source de chaleur F , plusieurs valeurs de F en fonction de x donc F même taille que x */
+        double taille_intervalle_ ; /*!<taille i de l'intervalle du maillage*/ 
+        std::vector<double> u0_ ; /*!<état initial de la température (quand temps = 0)*/
+
+    public: 
+        /**
+         * @brief Constructeur pour un nouveau objet heatEquationBase
+         * 
+         * @param nb_points_discretisation 
+         * @param longueur 
+         * @param t_max 
+         * @param taille_intervalle 
+         */
+        heatEquationBase(int nb_points_discretisation, double longueur, double t_max, double taille_intervalle);
+
+        /**
+         * @brief Fonction d'initialisation de l'état initial u0
+         * 
+         * @param u0 
+         */
+        virtual void initialize_u0(const std::vector<double>& u0);
 };
+
 
 /**
  * @class heatEquationBarre
@@ -31,34 +54,14 @@ class heatEquationBase {
  * pour l'équation de la chaleur pour une barre (objet à 1 dimension)
  * 
  */
-class heatEquationBarre : public heatEquationBase {
+class heatEquationBarre : public heatEquationBase<1> {
     private: 
-        double taille_intervalle_ ; /*!<taille i de l'intervalle du maillage*/ 
-        std::vector<double> u0_ ; /*!<état initial de la température (quand temps = 0 , constante en x)*/
         std::set<double> x_i_ ; /*!<points du maillage x_i */
         std::set<double> t_i_ ; /*!<points du maillage t_i */
 
 
     public: 
-        /**
-         * @brief Constructeur pour un nouveau objet heatEquationBarre
-         * 
-         * @param longueur
-         * @param taille_intervalle 
-         * @param t_max 
-         * @param nb_points_discretisation 
-         * @param x_i 
-         * @param t_i 
-         */
-        heatEquationBarre(double longueur, double taille_intervalle, double t_max, int nb_points_discretisation, const std::set<double>& x_i, const std::set<double>& t_i);
-
-
-        /**
-         * @brief Fonction d'initialisation de l'état initial u0
-         * 
-         * @param u0 
-         */
-        void initialize_u_0(const std::vector<double>& u0);
+        heatEquationBarre(int nb_points_discretisation, double longueur, double t_max, double taille_intervalle, const std::set<double>& x_i, const std::set<double>& t_i) ;
 
 
         /**
@@ -78,7 +81,7 @@ class heatEquationBarre : public heatEquationBase {
          * @param c : chaleur massique du matériau
          * @return 
          */
-         std::vector<std::vector<double>> solutionEquation(double lambda, double p, double c) const; 
+        std::vector<std::vector<double>> solutionEquation(double lambda, double p, double c) const; 
 
 };
 
