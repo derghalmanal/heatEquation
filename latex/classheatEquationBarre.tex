@@ -18,39 +18,38 @@ Inheritance diagram for heat\+Equation\+Barre\+:\begin{figure}[H]
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classheatEquationBarre_a5c8ead482c5899277640106356acfe5e}{heat\+Equation\+Barre}} (double longueur, double taille\+\_\+intervalle, double t\+\_\+max, int nb\+\_\+points\+\_\+discretisation, const std\+::set$<$ double $>$ \&x\+\_\+i, const std\+::set$<$ double $>$ \&t\+\_\+i)
-\begin{DoxyCompactList}\small\item\em Constructeur pour un nouveau objet \mbox{\hyperlink{classheatEquationBarre}{heat\+Equation\+Barre}}. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classheatEquationBarre_a626978c24dd6907550522b0b6c623255}{initialize\+\_\+u\+\_\+0}} (const std\+::vector$<$ double $>$ \&u0)
-\begin{DoxyCompactList}\small\item\em Fonction d\textquotesingle{}initialisation de l\textquotesingle{}état initial u0. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classheatEquationBarre_a43c487c9572d27855395c99426e17146}{heat\+Equation\+Barre}} (int nb\+\_\+points\+\_\+discretisation, double longueur, double t\+\_\+max, double taille\+\_\+intervalle, const std\+::set$<$ double $>$ \&x\+\_\+i, const std\+::set$<$ double $>$ \&t\+\_\+i)
+\begin{DoxyCompactList}\small\item\em Construit un nouveau objet \mbox{\hyperlink{classheatEquationBarre}{heat\+Equation\+Barre}}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classheatEquationBarre_ab867527a50e7c8a501b91f2118ff932d}{calcul\+\_\+source\+\_\+chaleur}} (const int \&f)
 \begin{DoxyCompactList}\small\item\em Fonction de calcul d\textquotesingle{}ajouts de chaleur en fonction d\textquotesingle{}une valeur f. \end{DoxyCompactList}\item 
-std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \mbox{\hyperlink{classheatEquationBarre_ac23526efaee0842ef09dd01d29d3da13}{solution\+Equation}} (double lambda, double p, double c) const
+std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \mbox{\hyperlink{classheatEquationBarre_a70be4cd99f253cf7e89e909917dc4014}{solution\+Equation}} (double lambda, double p, double c) const
 \begin{DoxyCompactList}\small\item\em Calcul de l\textquotesingle{}équation de la chaleur en foncton des valeurs de lambda, p et c Ces trois paramètres sont pris en fonction du matériau pour lequel on veut calculer l\textquotesingle{}équation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
 
 
 \doxysubsection{Detailed Description}
 classe qui hérite de \mbox{\hyperlink{classheatEquationBase}{heat\+Equation\+Base}} pour l\textquotesingle{}équation de la chaleur pour une barre (objet à 1 dimension) 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classheatEquationBarre_a5c8ead482c5899277640106356acfe5e}\label{classheatEquationBarre_a5c8ead482c5899277640106356acfe5e}} 
+\mbox{\Hypertarget{classheatEquationBarre_a43c487c9572d27855395c99426e17146}\label{classheatEquationBarre_a43c487c9572d27855395c99426e17146}} 
 \index{heatEquationBarre@{heatEquationBarre}!heatEquationBarre@{heatEquationBarre}}
 \index{heatEquationBarre@{heatEquationBarre}!heatEquationBarre@{heatEquationBarre}}
 \doxysubsubsection{\texorpdfstring{heatEquationBarre()}{heatEquationBarre()}}
-{\footnotesize\ttfamily heat\+Equation\+Barre\+::heat\+Equation\+Barre (\begin{DoxyParamCaption}\item[{double}]{longueur,  }\item[{double}]{taille\+\_\+intervalle,  }\item[{double}]{t\+\_\+max,  }\item[{int}]{nb\+\_\+points\+\_\+discretisation,  }\item[{const std\+::set$<$ double $>$ \&}]{x\+\_\+i,  }\item[{const std\+::set$<$ double $>$ \&}]{t\+\_\+i }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily heat\+Equation\+Barre\+::heat\+Equation\+Barre (\begin{DoxyParamCaption}\item[{int}]{nb\+\_\+points\+\_\+discretisation,  }\item[{double}]{longueur,  }\item[{double}]{t\+\_\+max,  }\item[{double}]{taille\+\_\+intervalle,  }\item[{const std\+::set$<$ double $>$ \&}]{x\+\_\+i,  }\item[{const std\+::set$<$ double $>$ \&}]{t\+\_\+i }\end{DoxyParamCaption})}
 
 
 
-Constructeur pour un nouveau objet \mbox{\hyperlink{classheatEquationBarre}{heat\+Equation\+Barre}}. 
+Construit un nouveau objet \mbox{\hyperlink{classheatEquationBarre}{heat\+Equation\+Barre}}. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em longueur} & \\
+{\em nb\+\_\+points\+\_\+discretisation} & \\
 \hline
-{\em taille\+\_\+intervalle} & \\
+{\em longueur} & \\
 \hline
 {\em t\+\_\+max} & \\
 \hline
-{\em nb\+\_\+points\+\_\+discretisation} & \\
+{\em taille\+\_\+intervalle} & \\
 \hline
 {\em x\+\_\+i} & \\
 \hline
@@ -75,26 +74,11 @@ Fonction de calcul d\textquotesingle{}ajouts de chaleur en fonction d\textquotes
 {\em f} & \+: une valeur de température \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classheatEquationBarre_a626978c24dd6907550522b0b6c623255}\label{classheatEquationBarre_a626978c24dd6907550522b0b6c623255}} 
-\index{heatEquationBarre@{heatEquationBarre}!initialize\_u\_0@{initialize\_u\_0}}
-\index{initialize\_u\_0@{initialize\_u\_0}!heatEquationBarre@{heatEquationBarre}}
-\doxysubsubsection{\texorpdfstring{initialize\_u\_0()}{initialize\_u\_0()}}
-{\footnotesize\ttfamily void heat\+Equation\+Barre\+::initialize\+\_\+u\+\_\+0 (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{u0 }\end{DoxyParamCaption})}
-
-
-
-Fonction d\textquotesingle{}initialisation de l\textquotesingle{}état initial u0. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em u0} & \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{classheatEquationBarre_ac23526efaee0842ef09dd01d29d3da13}\label{classheatEquationBarre_ac23526efaee0842ef09dd01d29d3da13}} 
+\mbox{\Hypertarget{classheatEquationBarre_a70be4cd99f253cf7e89e909917dc4014}\label{classheatEquationBarre_a70be4cd99f253cf7e89e909917dc4014}} 
 \index{heatEquationBarre@{heatEquationBarre}!solutionEquation@{solutionEquation}}
 \index{solutionEquation@{solutionEquation}!heatEquationBarre@{heatEquationBarre}}
 \doxysubsubsection{\texorpdfstring{solutionEquation()}{solutionEquation()}}
-{\footnotesize\ttfamily std\+::vector$<$std\+::vector$<$double$>$ $>$ heat\+Equation\+Barre\+::solution\+Equation (\begin{DoxyParamCaption}\item[{double}]{lambda,  }\item[{double}]{p,  }\item[{double}]{c }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ double $>$ $>$ heat\+Equation\+Barre\+::solution\+Equation (\begin{DoxyParamCaption}\item[{double}]{lambda,  }\item[{double}]{p,  }\item[{double}]{c }\end{DoxyParamCaption}) const}
 
 
 
@@ -114,6 +98,7 @@ Calcul de l\textquotesingle{}équation de la chaleur en foncton des valeurs de l
 \end{DoxyReturn}
 
 
-The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{heatEquation_8hpp}{heat\+Equation.\+hpp}}\end{DoxyCompactItemize}
+\mbox{\hyperlink{heatEquation_8hpp}{heat\+Equation.\+hpp}}\item 
+\mbox{\hyperlink{heatEquationBarre_8cpp}{heat\+Equation\+Barre.\+cpp}}\end{DoxyCompactItemize}

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['heatequationbarre_10',['heatEquationBarre',['../classheatEquationBarre.html#a5c8ead482c5899277640106356acfe5e',1,'heatEquationBarre']]]
+  ['heatequationbarre_22',['heatEquationBarre',['../classheatEquationBarre.html#a43c487c9572d27855395c99426e17146',1,'heatEquationBarre']]],
+  ['heatequationbase_23',['heatEquationBase',['../classheatEquationBase.html#ac67f171bfb2b1b3a712ca4afa71149ce',1,'heatEquationBase']]]
 ];

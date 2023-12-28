@@ -1,5 +1,5 @@
-\hypertarget{classheatEquationBase}{}\doxysection{heat\+Equation\+Base Class Reference}
-\label{classheatEquationBase}\index{heatEquationBase@{heatEquationBase}}
+\hypertarget{classheatEquationBase}{}\doxysection{heat\+Equation\+Base$<$ d $>$ Class Template Reference}
+\label{classheatEquationBase}\index{heatEquationBase$<$ d $>$@{heatEquationBase$<$ d $>$}}
 
 
 classe de base pour les équations de la chaleur elle gère les informations qu\textquotesingle{}on retrouvera pour l\textquotesingle{}équation de la chaleur peu importe le cas  
@@ -9,17 +9,126 @@ classe de base pour les équations de la chaleur elle gère les informations qu\
 
 {\ttfamily \#include $<$heat\+Equation.\+hpp$>$}
 
-Inheritance diagram for heat\+Equation\+Base\+:\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[height=2.000000cm]{classheatEquationBase}
-\end{center}
-\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classheatEquationBase_ac67f171bfb2b1b3a712ca4afa71149ce}{heat\+Equation\+Base}} (int nb\+\_\+points\+\_\+discretisation, double longueur, double t\+\_\+max, double taille\+\_\+intervalle)
+\begin{DoxyCompactList}\small\item\em Constructeur pour un nouveau objet \mbox{\hyperlink{classheatEquationBase}{heat\+Equation\+Base}}. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classheatEquationBase_a84df79ad0d035579ae28e5fa2107389f}{initialize\+\_\+u0}} (const std\+::vector$<$ double $>$ \&u0)
+\begin{DoxyCompactList}\small\item\em Fonction d\textquotesingle{}initialisation de l\textquotesingle{}état initial u0. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classheatEquationBase_adad4261a3cc5f350d125f9f90f0ab27d}{nb\+\_\+points\+\_\+discretisation\+\_\+}}
+\item 
+double \mbox{\hyperlink{classheatEquationBase_a2907942cd5f847f8782401376bd7727d}{longueur\+\_\+}}
+\item 
+double \mbox{\hyperlink{classheatEquationBase_a287484612614c0599dd55198181f326f}{t\+\_\+max\+\_\+}}
+\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classheatEquationBase_a4a2979dbade6171bb23674c9baf4ff3d}{source\+\_\+chaleur\+\_\+}}
+\item 
+double \mbox{\hyperlink{classheatEquationBase_a31b41669cba5a67b2f2d04bf6e00da5f}{taille\+\_\+intervalle\+\_\+}}
+\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classheatEquationBase_a1e92b3190f13c975a617c8a45d0f8c43}{u0\+\_\+}}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
+\subsubsection*{template$<$std\+::size\+\_\+t d$>$\newline
+class heat\+Equation\+Base$<$ d $>$}
+
 classe de base pour les équations de la chaleur elle gère les informations qu\textquotesingle{}on retrouvera pour l\textquotesingle{}équation de la chaleur peu importe le cas 
 
-The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classheatEquationBase_ac67f171bfb2b1b3a712ca4afa71149ce}\label{classheatEquationBase_ac67f171bfb2b1b3a712ca4afa71149ce}} 
+\index{heatEquationBase$<$ d $>$@{heatEquationBase$<$ d $>$}!heatEquationBase@{heatEquationBase}}
+\index{heatEquationBase@{heatEquationBase}!heatEquationBase$<$ d $>$@{heatEquationBase$<$ d $>$}}
+\doxysubsubsection{\texorpdfstring{heatEquationBase()}{heatEquationBase()}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t d$>$ \\
+\mbox{\hyperlink{classheatEquationBase}{heat\+Equation\+Base}}$<$ d $>$\+::\mbox{\hyperlink{classheatEquationBase}{heat\+Equation\+Base}} (\begin{DoxyParamCaption}\item[{int}]{nb\+\_\+points\+\_\+discretisation,  }\item[{double}]{longueur,  }\item[{double}]{t\+\_\+max,  }\item[{double}]{taille\+\_\+intervalle }\end{DoxyParamCaption})}
+
+
+
+Constructeur pour un nouveau objet \mbox{\hyperlink{classheatEquationBase}{heat\+Equation\+Base}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nb\+\_\+points\+\_\+discretisation} & \\
+\hline
+{\em longueur} & \\
+\hline
+{\em t\+\_\+max} & \\
+\hline
+{\em taille\+\_\+intervalle} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classheatEquationBase_a84df79ad0d035579ae28e5fa2107389f}\label{classheatEquationBase_a84df79ad0d035579ae28e5fa2107389f}} 
+\index{heatEquationBase$<$ d $>$@{heatEquationBase$<$ d $>$}!initialize\_u0@{initialize\_u0}}
+\index{initialize\_u0@{initialize\_u0}!heatEquationBase$<$ d $>$@{heatEquationBase$<$ d $>$}}
+\doxysubsubsection{\texorpdfstring{initialize\_u0()}{initialize\_u0()}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t d$>$ \\
+void \mbox{\hyperlink{classheatEquationBase}{heat\+Equation\+Base}}$<$ d $>$\+::initialize\+\_\+u0 (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{u0 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Fonction d\textquotesingle{}initialisation de l\textquotesingle{}état initial u0. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em u0} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classheatEquationBase_a2907942cd5f847f8782401376bd7727d}\label{classheatEquationBase_a2907942cd5f847f8782401376bd7727d}} 
+\index{heatEquationBase$<$ d $>$@{heatEquationBase$<$ d $>$}!longueur\_@{longueur\_}}
+\index{longueur\_@{longueur\_}!heatEquationBase$<$ d $>$@{heatEquationBase$<$ d $>$}}
+\doxysubsubsection{\texorpdfstring{longueur\_}{longueur\_}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t d$>$ \\
+double \mbox{\hyperlink{classheatEquationBase}{heat\+Equation\+Base}}$<$ d $>$\+::longueur\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+longueur L de l\textquotesingle{}objet \mbox{\Hypertarget{classheatEquationBase_adad4261a3cc5f350d125f9f90f0ab27d}\label{classheatEquationBase_adad4261a3cc5f350d125f9f90f0ab27d}} 
+\index{heatEquationBase$<$ d $>$@{heatEquationBase$<$ d $>$}!nb\_points\_discretisation\_@{nb\_points\_discretisation\_}}
+\index{nb\_points\_discretisation\_@{nb\_points\_discretisation\_}!heatEquationBase$<$ d $>$@{heatEquationBase$<$ d $>$}}
+\doxysubsubsection{\texorpdfstring{nb\_points\_discretisation\_}{nb\_points\_discretisation\_}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t d$>$ \\
+int \mbox{\hyperlink{classheatEquationBase}{heat\+Equation\+Base}}$<$ d $>$\+::nb\+\_\+points\+\_\+discretisation\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+Nombre de points de discrétisation en espace et en temps \mbox{\Hypertarget{classheatEquationBase_a4a2979dbade6171bb23674c9baf4ff3d}\label{classheatEquationBase_a4a2979dbade6171bb23674c9baf4ff3d}} 
+\index{heatEquationBase$<$ d $>$@{heatEquationBase$<$ d $>$}!source\_chaleur\_@{source\_chaleur\_}}
+\index{source\_chaleur\_@{source\_chaleur\_}!heatEquationBase$<$ d $>$@{heatEquationBase$<$ d $>$}}
+\doxysubsubsection{\texorpdfstring{source\_chaleur\_}{source\_chaleur\_}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t d$>$ \\
+std\+::vector$<$double$>$ \mbox{\hyperlink{classheatEquationBase}{heat\+Equation\+Base}}$<$ d $>$\+::source\+\_\+chaleur\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+source de chaleur F , plusieurs valeurs de F en fonction de x donc F même taille que x \mbox{\Hypertarget{classheatEquationBase_a287484612614c0599dd55198181f326f}\label{classheatEquationBase_a287484612614c0599dd55198181f326f}} 
+\index{heatEquationBase$<$ d $>$@{heatEquationBase$<$ d $>$}!t\_max\_@{t\_max\_}}
+\index{t\_max\_@{t\_max\_}!heatEquationBase$<$ d $>$@{heatEquationBase$<$ d $>$}}
+\doxysubsubsection{\texorpdfstring{t\_max\_}{t\_max\_}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t d$>$ \\
+double \mbox{\hyperlink{classheatEquationBase}{heat\+Equation\+Base}}$<$ d $>$\+::t\+\_\+max\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+temps maximum \mbox{\Hypertarget{classheatEquationBase_a31b41669cba5a67b2f2d04bf6e00da5f}\label{classheatEquationBase_a31b41669cba5a67b2f2d04bf6e00da5f}} 
+\index{heatEquationBase$<$ d $>$@{heatEquationBase$<$ d $>$}!taille\_intervalle\_@{taille\_intervalle\_}}
+\index{taille\_intervalle\_@{taille\_intervalle\_}!heatEquationBase$<$ d $>$@{heatEquationBase$<$ d $>$}}
+\doxysubsubsection{\texorpdfstring{taille\_intervalle\_}{taille\_intervalle\_}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t d$>$ \\
+double \mbox{\hyperlink{classheatEquationBase}{heat\+Equation\+Base}}$<$ d $>$\+::taille\+\_\+intervalle\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+taille i de l\textquotesingle{}intervalle du maillage \mbox{\Hypertarget{classheatEquationBase_a1e92b3190f13c975a617c8a45d0f8c43}\label{classheatEquationBase_a1e92b3190f13c975a617c8a45d0f8c43}} 
+\index{heatEquationBase$<$ d $>$@{heatEquationBase$<$ d $>$}!u0\_@{u0\_}}
+\index{u0\_@{u0\_}!heatEquationBase$<$ d $>$@{heatEquationBase$<$ d $>$}}
+\doxysubsubsection{\texorpdfstring{u0\_}{u0\_}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t d$>$ \\
+std\+::vector$<$double$>$ \mbox{\hyperlink{classheatEquationBase}{heat\+Equation\+Base}}$<$ d $>$\+::u0\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+état initial de la température (quand temps = 0) 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{heatEquation_8hpp}{heat\+Equation.\+hpp}}\end{DoxyCompactItemize}
+\mbox{\hyperlink{heatEquation_8hpp}{heat\+Equation.\+hpp}}\item 
+\mbox{\hyperlink{heatEquationBase_8cpp}{heat\+Equation\+Base.\+cpp}}\end{DoxyCompactItemize}

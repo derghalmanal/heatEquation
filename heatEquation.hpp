@@ -61,6 +61,16 @@ class heatEquationBarre : public heatEquationBase<1> {
 
 
     public: 
+    /**
+     * @brief Construit un nouveau objet heatEquationBarre 
+     * 
+     * @param nb_points_discretisation 
+     * @param longueur 
+     * @param t_max 
+     * @param taille_intervalle 
+     * @param x_i 
+     * @param t_i 
+     */
         heatEquationBarre(int nb_points_discretisation, double longueur, double t_max, double taille_intervalle, const std::set<double>& x_i, const std::set<double>& t_i) ;
 
 

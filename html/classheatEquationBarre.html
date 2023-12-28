@@ -79,30 +79,50 @@ Inheritance diagram for heatEquationBarre:</div>
  <div class="center">
   <img src="classheatEquationBarre.png" usemap="#heatEquationBarre_map" alt=""/>
   <map id="heatEquationBarre_map" name="heatEquationBarre_map">
-<area href="classheatEquationBase.html" title="classe de base pour les équations de la chaleur elle gère les informations qu&#39;on retrouvera pour l&#39;éq..." alt="heatEquationBase" shape="rect" coords="0,0,116,24"/>
+<area href="classheatEquationBase.html" alt="heatEquationBase&lt; 1 &gt;" shape="rect" coords="0,0,143,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5c8ead482c5899277640106356acfe5e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classheatEquationBarre.html#a5c8ead482c5899277640106356acfe5e">heatEquationBarre</a> (double longueur, double taille_intervalle, double t_max, int nb_points_discretisation, const std::set&lt; double &gt; &amp;x_i, const std::set&lt; double &gt; &amp;t_i)</td></tr>
-<tr class="memdesc:a5c8ead482c5899277640106356acfe5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur pour un nouveau objet <a class="el" href="classheatEquationBarre.html" title="classe qui hérite de heatEquationBase pour l&#39;équation de la chaleur pour une barre (objet à 1 dimensi...">heatEquationBarre</a>.  <a href="classheatEquationBarre.html#a5c8ead482c5899277640106356acfe5e">More...</a><br /></td></tr>
-<tr class="separator:a5c8ead482c5899277640106356acfe5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a626978c24dd6907550522b0b6c623255"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classheatEquationBarre.html#a626978c24dd6907550522b0b6c623255">initialize_u_0</a> (const std::vector&lt; double &gt; &amp;u0)</td></tr>
-<tr class="memdesc:a626978c24dd6907550522b0b6c623255"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction d'initialisation de l'état initial u0.  <a href="classheatEquationBarre.html#a626978c24dd6907550522b0b6c623255">More...</a><br /></td></tr>
-<tr class="separator:a626978c24dd6907550522b0b6c623255"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43c487c9572d27855395c99426e17146"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classheatEquationBarre.html#a43c487c9572d27855395c99426e17146">heatEquationBarre</a> (int nb_points_discretisation, double longueur, double t_max, double taille_intervalle, const std::set&lt; double &gt; &amp;x_i, const std::set&lt; double &gt; &amp;t_i)</td></tr>
+<tr class="memdesc:a43c487c9572d27855395c99426e17146"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construit un nouveau objet <a class="el" href="classheatEquationBarre.html" title="classe qui hérite de heatEquationBase pour l&#39;équation de la chaleur pour une barre (objet à 1 dimensi...">heatEquationBarre</a>.  <a href="classheatEquationBarre.html#a43c487c9572d27855395c99426e17146">More...</a><br /></td></tr>
+<tr class="separator:a43c487c9572d27855395c99426e17146"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab867527a50e7c8a501b91f2118ff932d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classheatEquationBarre.html#ab867527a50e7c8a501b91f2118ff932d">calcul_source_chaleur</a> (const int &amp;f)</td></tr>
 <tr class="memdesc:ab867527a50e7c8a501b91f2118ff932d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction de calcul d'ajouts de chaleur en fonction d'une valeur f.  <a href="classheatEquationBarre.html#ab867527a50e7c8a501b91f2118ff932d">More...</a><br /></td></tr>
 <tr class="separator:ab867527a50e7c8a501b91f2118ff932d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac23526efaee0842ef09dd01d29d3da13"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classheatEquationBarre.html#ac23526efaee0842ef09dd01d29d3da13">solutionEquation</a> (double lambda, double p, double c) const</td></tr>
-<tr class="memdesc:ac23526efaee0842ef09dd01d29d3da13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcul de l'équation de la chaleur en foncton des valeurs de lambda, p et c Ces trois paramètres sont pris en fonction du matériau pour lequel on veut calculer l'équation.  <a href="classheatEquationBarre.html#ac23526efaee0842ef09dd01d29d3da13">More...</a><br /></td></tr>
-<tr class="separator:ac23526efaee0842ef09dd01d29d3da13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70be4cd99f253cf7e89e909917dc4014"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classheatEquationBarre.html#a70be4cd99f253cf7e89e909917dc4014">solutionEquation</a> (double lambda, double p, double c) const</td></tr>
+<tr class="memdesc:a70be4cd99f253cf7e89e909917dc4014"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcul de l'équation de la chaleur en foncton des valeurs de lambda, p et c Ces trois paramètres sont pris en fonction du matériau pour lequel on veut calculer l'équation.  <a href="classheatEquationBarre.html#a70be4cd99f253cf7e89e909917dc4014">More...</a><br /></td></tr>
+<tr class="separator:a70be4cd99f253cf7e89e909917dc4014"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classheatEquationBase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classheatEquationBase')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classheatEquationBase.html">heatEquationBase&lt; 1 &gt;</a></td></tr>
+<tr class="memitem:ac67f171bfb2b1b3a712ca4afa71149ce inherit pub_methods_classheatEquationBase"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classheatEquationBase.html#ac67f171bfb2b1b3a712ca4afa71149ce">heatEquationBase</a> (int nb_points_discretisation, double longueur, double t_max, double taille_intervalle)</td></tr>
+<tr class="memdesc:ac67f171bfb2b1b3a712ca4afa71149ce inherit pub_methods_classheatEquationBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur pour un nouveau objet <a class="el" href="classheatEquationBase.html" title="classe de base pour les équations de la chaleur elle gère les informations qu&#39;on retrouvera pour l&#39;éq...">heatEquationBase</a>.  <a href="classheatEquationBase.html#ac67f171bfb2b1b3a712ca4afa71149ce">More...</a><br /></td></tr>
+<tr class="separator:ac67f171bfb2b1b3a712ca4afa71149ce inherit pub_methods_classheatEquationBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84df79ad0d035579ae28e5fa2107389f inherit pub_methods_classheatEquationBase"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classheatEquationBase.html#a84df79ad0d035579ae28e5fa2107389f">initialize_u0</a> (const std::vector&lt; double &gt; &amp;u0)</td></tr>
+<tr class="memdesc:a84df79ad0d035579ae28e5fa2107389f inherit pub_methods_classheatEquationBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction d'initialisation de l'état initial u0.  <a href="classheatEquationBase.html#a84df79ad0d035579ae28e5fa2107389f">More...</a><br /></td></tr>
+<tr class="separator:a84df79ad0d035579ae28e5fa2107389f inherit pub_methods_classheatEquationBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_attribs_classheatEquationBase"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classheatEquationBase')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classheatEquationBase.html">heatEquationBase&lt; 1 &gt;</a></td></tr>
+<tr class="memitem:adad4261a3cc5f350d125f9f90f0ab27d inherit pro_attribs_classheatEquationBase"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classheatEquationBase.html#adad4261a3cc5f350d125f9f90f0ab27d">nb_points_discretisation_</a></td></tr>
+<tr class="separator:adad4261a3cc5f350d125f9f90f0ab27d inherit pro_attribs_classheatEquationBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2907942cd5f847f8782401376bd7727d inherit pro_attribs_classheatEquationBase"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classheatEquationBase.html#a2907942cd5f847f8782401376bd7727d">longueur_</a></td></tr>
+<tr class="separator:a2907942cd5f847f8782401376bd7727d inherit pro_attribs_classheatEquationBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a287484612614c0599dd55198181f326f inherit pro_attribs_classheatEquationBase"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classheatEquationBase.html#a287484612614c0599dd55198181f326f">t_max_</a></td></tr>
+<tr class="separator:a287484612614c0599dd55198181f326f inherit pro_attribs_classheatEquationBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a2979dbade6171bb23674c9baf4ff3d inherit pro_attribs_classheatEquationBase"><td class="memItemLeft" align="right" valign="top">std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classheatEquationBase.html#a4a2979dbade6171bb23674c9baf4ff3d">source_chaleur_</a></td></tr>
+<tr class="separator:a4a2979dbade6171bb23674c9baf4ff3d inherit pro_attribs_classheatEquationBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31b41669cba5a67b2f2d04bf6e00da5f inherit pro_attribs_classheatEquationBase"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classheatEquationBase.html#a31b41669cba5a67b2f2d04bf6e00da5f">taille_intervalle_</a></td></tr>
+<tr class="separator:a31b41669cba5a67b2f2d04bf6e00da5f inherit pro_attribs_classheatEquationBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e92b3190f13c975a617c8a45d0f8c43 inherit pro_attribs_classheatEquationBase"><td class="memItemLeft" align="right" valign="top">std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classheatEquationBase.html#a1e92b3190f13c975a617c8a45d0f8c43">u0_</a></td></tr>
+<tr class="separator:a1e92b3190f13c975a617c8a45d0f8c43 inherit pro_attribs_classheatEquationBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>classe qui hérite de <a class="el" href="classheatEquationBase.html" title="classe de base pour les équations de la chaleur elle gère les informations qu&#39;on retrouvera pour l&#39;éq...">heatEquationBase</a> pour l'équation de la chaleur pour une barre (objet à 1 dimension) </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a5c8ead482c5899277640106356acfe5e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5c8ead482c5899277640106356acfe5e">&#9670;&nbsp;</a></span>heatEquationBarre()</h2>
+<a id="a43c487c9572d27855395c99426e17146"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43c487c9572d27855395c99426e17146">&#9670;&nbsp;</a></span>heatEquationBarre()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -110,14 +130,14 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">heatEquationBarre::heatEquationBarre </td>
           <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>longueur</em>, </td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nb_points_discretisation</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>taille_intervalle</em>, </td>
+          <td class="paramname"><em>longueur</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -128,8 +148,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>nb_points_discretisation</em>, </td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>taille_intervalle</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -151,13 +171,13 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructeur pour un nouveau objet <a class="el" href="classheatEquationBarre.html" title="classe qui hérite de heatEquationBase pour l&#39;équation de la chaleur pour une barre (objet à 1 dimensi...">heatEquationBarre</a>. </p>
+<p>Construit un nouveau objet <a class="el" href="classheatEquationBarre.html" title="classe qui hérite de heatEquationBase pour l&#39;équation de la chaleur pour une barre (objet à 1 dimensi...">heatEquationBarre</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">longueur</td><td></td></tr>
-    <tr><td class="paramname">taille_intervalle</td><td></td></tr>
-    <tr><td class="paramname">t_max</td><td></td></tr>
     <tr><td class="paramname">nb_points_discretisation</td><td></td></tr>
+    <tr><td class="paramname">longueur</td><td></td></tr>
+    <tr><td class="paramname">t_max</td><td></td></tr>
+    <tr><td class="paramname">taille_intervalle</td><td></td></tr>
     <tr><td class="paramname">x_i</td><td></td></tr>
     <tr><td class="paramname">t_i</td><td></td></tr>
   </table>
@@ -193,40 +213,14 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a626978c24dd6907550522b0b6c623255"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a626978c24dd6907550522b0b6c623255">&#9670;&nbsp;</a></span>initialize_u_0()</h2>
+<a id="a70be4cd99f253cf7e89e909917dc4014"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70be4cd99f253cf7e89e909917dc4014">&#9670;&nbsp;</a></span>solutionEquation()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void heatEquationBarre::initialize_u_0 </td>
-          <td>(</td>
-          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
-          <td class="paramname"><em>u0</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Fonction d'initialisation de l'état initial u0. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">u0</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ac23526efaee0842ef09dd01d29d3da13"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac23526efaee0842ef09dd01d29d3da13">&#9670;&nbsp;</a></span>solutionEquation()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;std::vector&lt;double&gt; &gt; heatEquationBarre::solutionEquation </td>
+          <td class="memname">std::vector&lt; std::vector&lt; double &gt; &gt; heatEquationBarre::solutionEquation </td>
           <td>(</td>
           <td class="paramtype">double&#160;</td>
           <td class="paramname"><em>lambda</em>, </td>
@@ -264,8 +258,9 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="heatEquation_8hpp_source.html">heatEquation.hpp</a></li>
+<li><a class="el" href="heatEquationBarre_8cpp.html">heatEquationBarre.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -22,7 +22,7 @@ heatEquationBase<d>::heatEquationBase(int nb_points_discretisation, double longu
 template<std::size_t d>
 void heatEquationBase<d>::initialize_u0(const std::vector<double>& u0){
     if (u0.size() == d) {
-        u0_ = u0; // faut modifier et mettre u0 en delgré Kelvin 
+        u0_ = u0; // faut modifier et mettre u0 en delgré Kelvin + 273,15
     } else {
         throw std::invalid_argument("La taille du vecteur u0 ne correspond pas à la dimension d.");
     }
