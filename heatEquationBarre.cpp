@@ -60,23 +60,23 @@ std::vector<std::vector<double>> heatEquationBarre::solutionEquation(double lamb
 
     }
     matS[0][0] = 1 + s ;
-    D[N] = u0_[N] + (T*this->source_chaleur_[N])/(p*c) * s*u0_[N];
+    D[N-1] = u0_[N-1] + (T*this->source_chaleur_[N-1])/(p*c) * s*u0_[N-1];
 
     
     // on change les coefficients diagonaux 
     std::vector<std::vector<double>> newMat(N, std::vector<double>(N, 0.0)); // nouvelle matrice des coefficients 
-
+    newMat[0][1] = matS[0][1] / matS[0][0] ;
     for(int i = 0 ; i < N ; i++){
         newMat[i][i] = 1; // diagonale en 1
         
         // nouvelles valeurs pour la diagonale supérieure
         newMat[i][i+1] = matS[i][i+1] / (matS[i][i] - (newMat[i-1][i] * matS[i+1][i]));
-        newMat[0][1] = matS[0][1] / matS[0][0] ;
     }
 
     // nouvelles valeurs de U^(j) et D^(j) pour chaque valeurs de j
 
-    std::vector<std::vector<double>> solution(N) ; // on créé la matrice où l'on stock les U^(j)
+    std::vector<std::vector<double>> solution(N, std::vector<double>(N)) ; // on créé la matrice où l'on stock les U^(j)
+
     solution[0] = u0_ ; 
     std::vector<double> newD(N); // quand on change les valeurs de D 
 
@@ -88,7 +88,7 @@ std::vector<std::vector<double>> heatEquationBarre::solutionEquation(double lamb
         }
 
         // mise à jour des valeurs de U 
-        for(int i = N ; i >= 1 ; --i){
+        for(int i = N-1 ; i >= 1 ; --i){
             solution[i][j] = newD[i] - (newMat[i][i+1] * solution[i+1][j]) ;
         }
 
@@ -96,10 +96,6 @@ std::vector<std::vector<double>> heatEquationBarre::solutionEquation(double lamb
     }
 
     return(solution);
-
-
-
-
 
 
 }
