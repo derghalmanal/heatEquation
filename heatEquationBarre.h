@@ -20,7 +20,6 @@ class heatEquationBarre : public heatEquationBase<1> {
         std::set<double> x_i_ ; /*!<points du maillage x_i */
         std::set<double> t_i_ ; /*!<points du maillage t_i */
         std::vector<double> source_chaleur_ ; /*!<source de chaleur F , plusieurs valeurs de F en fonction de x donc F même taille que x */
-        std::vector<double> U_; /*!<solution approchée de l'équation en tous les points du maillage*/
         std::vector<double> A_; /*!<vecteur A de la matrice tridiagonale*/
         std::vector<double> B_; /*!<vecteur B de la matrice tridiagonale*/
         std::vector<double> C_; /*!<vecteur C de la matrice tridiagonale*/
@@ -35,10 +34,7 @@ class heatEquationBarre : public heatEquationBase<1> {
     public: 
 
 
-        heatEquationBarre(int nb_points_discretisation, double t_max, double L, double u0, double f, std::vector<double> lambda, std::vector<double> p , std::vector<double> c);
-
-        void initialize_matrice(int num_materiau);
-
+        heatEquationBarre(int nb_points_discretisation, double t_max, double L, double u0, double f, std::vector<double> lambda, std::vector<double> p , std::vector<double> c, int num_materiau);
 
         /**
          * @brief Fonction de calcul d'ajouts de chaleur en fonction d'une valeur f
@@ -47,9 +43,11 @@ class heatEquationBarre : public heatEquationBase<1> {
          */
         void calcul_source_chaleur();
 
-        void solve();
+        void solve(int num_iterations);
 
-        std::vector<double> get_U() const;
+        std::vector<double> get_D() const;
+
+        void printSolution() const;
 };
 
 #endif
