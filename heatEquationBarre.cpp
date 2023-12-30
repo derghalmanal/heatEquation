@@ -5,11 +5,10 @@
  * 
  */
 
-#include <vector>
-#include <set>
-#include <stdexcept>
-#include <cmath>
 #include <iostream>
+#include <vector>
+#include <cmath>
+
 #include "heatEquationBarre.h"
 
 
@@ -34,12 +33,11 @@ heatEquationBarre::heatEquationBarre(int nb_points_discretisation, double t_max,
 
     D_.assign(nb_points_discretisation_, 0.0);
     for (int i = 0; i < nb_points_discretisation_; ++i) {
-        if (i != nb_points_discretisation_ - 1) {
-            D_[i] = u0_ + T_ * source_chaleur_[i] / (p_[num_materiau] * c_[num_materiau]);
-        } else {
-            D_[i] = u0_ + T_ * source_chaleur_[i] / (p_[num_materiau] * c_[num_materiau]) + s_[num_materiau] * u0_;
-        }
+        D_[i] = u0_ + T_ * source_chaleur_[i] / (p_[num_materiau] * c_[num_materiau]);
     }
+
+    D_[nb_points_discretisation_ - 1] += s_[num_materiau] * u0_;
+
 }
 
 
@@ -60,23 +58,30 @@ void heatEquationBarre::calcul_source_chaleur() {
 
 
 void heatEquationBarre::solve(int num_iterations) {
-    for (int iteration = 0; iteration < num_iterations; ++iteration) {
-        int n = nb_points_discretisation_ - 1;
+    if (num_iterations == 0) {
+        D_.assign(nb_points_discretisation_, u0_);
+    } else{   
+        for (int iteration = 0; iteration < num_iterations; ++iteration) {
 
-        C_[0] /= B_[0];
-        D_[0] /= B_[0];
 
-        for (int i = 1; i < n; i++) {
-            C_[i] /= B_[i] - A_[i] * C_[i - 1];
-            D_[i] = (D_[i] - A_[i] * D_[i - 1]) / (B_[i] - A_[i] * C_[i - 1]);
+            int n = nb_points_discretisation_ - 1;
+
+            C_[0] /= B_[0];
+            D_[0] /= B_[0];
+
+            for (int i = 1; i < n; i++) {
+                C_[i] /= B_[i] - A_[i] * C_[i - 1];
+                D_[i] = (D_[i] - A_[i] * D_[i - 1]) / (B_[i] - A_[i] * C_[i - 1]);
+            }
+
+            D_[n] = (D_[n] - A_[n] * D_[n - 1]) / (B_[n] - A_[n] * C_[n - 1]);
+
+            for (int i = n; i-- > 0;) {
+                D_[i] -= C_[i] * D_[i + 1];
+            }
+
+
         }
-
-        D_[n] = (D_[n] - A_[n] * D_[n - 1]) / (B_[n] - A_[n] * C_[n - 1]);
-
-        for (int i = n; i-- > 0;) {
-            D_[i] -= C_[i] * D_[i + 1];
-        }
-
     }
 }
 
@@ -91,4 +96,8 @@ void heatEquationBarre::printSolution() const {
     }
     std::cout << std::endl;
 
+}
+
+std::vector<double> heatEquationBarre::getSolution() const {
+    return D_;
 }

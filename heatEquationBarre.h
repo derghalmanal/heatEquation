@@ -45,9 +45,9 @@ class heatEquationBarre : public heatEquationBase<1> {
 
         void solve(int num_iterations);
 
-        std::vector<double> get_D() const;
-
         void printSolution() const;
+
+        std::vector<double> getSolution() const;
 };
 
 #endif

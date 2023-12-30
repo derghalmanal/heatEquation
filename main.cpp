@@ -6,7 +6,7 @@
 int main() {
 
     // Paramètres nécessaires pour le constructeur
-    int n = 4;
+    int n = 10;
     double t_max = 16.0;
     double L = 1.0;
     double u0 = 13.0;
