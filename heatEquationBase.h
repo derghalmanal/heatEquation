@@ -6,9 +6,9 @@
 
 
 /**
- * @class heatEquationBase
- * @brief classe de base pour les équations de la chaleur
- * elle gère les informations qu'on retrouvera pour l'équation de la chaleur peu importe le cas
+ * @class {heatEquationBase}
+ * @brief {classe de base pour les équations de la chaleur
+ * elle gère les informations qu'on retrouvera pour l'équation de la chaleur peu importe le cas}
  * 
  */
 template<std::size_t d>
@@ -26,8 +26,9 @@ class heatEquationBase {
         std::vector<double> lambda_ ; /*!<conductivité thermique du matériau*/
         std::vector<double> p_; /*!<masse volumique du matériau*/
         std::vector<double> c_; /*!<chaleur massique du matériau*/
-        std::vector<double> s_; /*!<paramètre de stabilité*/
-        int num_materiau_ ; /*!<numéro du matériau*/
+        std::vector<double> s_; /*!<paramètre de stabilité, s = lambda * T / (p * c * h^2)*/
+        int num_materiau_ ; /*!<numéro du matériau sur lequeal on travaille, donc 0 c'est le premier matériau, 1 le deuxième etc...*/
+
     public: 
 
 
@@ -40,19 +41,12 @@ class heatEquationBase {
         h_ = L_ / (nb_points_discretisation_ + 1);
         T_ = t_max_ / (nb_points_discretisation_ + 1);
 
-        //verifie que p[i] != 0, c[i] != 0
-        for (int i = 0; i < nb_points_discretisation_; i++) {
-            if (p_[i] == 0 || c_[i] == 0) {
-                throw "p[i] and c[i] must be non-zero";
-            }
-        }
-
-        s_.resize(nb_points_discretisation_);
-        for (int i = 0; i < nb_points_discretisation_; i++) {
+        s_.resize(lambda_.size());
+        for (size_t i = 0; i < lambda.size(); i++) {
             s_[i] = (lambda_[i] * T_) / (p_[i] * c_[i] * std::pow(h_, 2));
         }
-
     }
+
 
 };
 

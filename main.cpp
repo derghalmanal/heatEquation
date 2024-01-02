@@ -6,7 +6,7 @@
 int main() {
 
     // Paramètres nécessaires pour le constructeur
-    int n = 10;
+    int n = 100;
     double t_max = 16.0;
     double L = 1.0;
     double u0 = 13.0;
@@ -20,12 +20,24 @@ int main() {
     // Création de l'instance de la classe avec les paramètres
     heatEquationBarre barre(n, t_max, L, u0, f, lambda, p, c, num_materiau);
 
-    barre.solve(3);
+    std::vector<double> t_i = barre.getTi();
 
-    std::cout << "Pour t=3: " << std::endl;
+    std::cout << "t_i : ";
+    for (size_t i = 0; i < t_i.size(); ++i) {
+        std::cout << t_i[i] << " ";
+    }
+    std::cout << std::endl;
 
-    barre.printSolution();
+    double pas = t_max / 100.0;
+
+    for (double i = 0.0; i <= t_max; i += pas) {
+        std::vector<double> solution = barre.laasonenSolve(i, num_materiau);
+        std::cout << "Solution à t = " << i << " : ";
+        for (std::size_t j = 0; j < solution.size(); ++j) {
+            std::cout << solution[j] << " ";
+        }
+        std::cout << std::endl;
+    }
 
     return 0;
 }
-
