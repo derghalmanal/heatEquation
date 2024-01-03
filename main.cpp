@@ -48,7 +48,7 @@ int main() {
         std::cout << std::endl;
 
         // Affichage de la barre en SDL
-        animationBarre(renderer, barre);
+        animationBarre(renderer, barre, solution);
 
         // Actualisation de la fenêtre SDL
         SDL_RenderPresent(renderer);

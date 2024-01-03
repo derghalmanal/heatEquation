@@ -46,29 +46,33 @@ SDL_Renderer *initRenderer(SDL_Window *window){
 
 
 
-void animationBarre(SDL_Renderer *renderer, const heatEquationBarre &barre) {
-    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);  // Couleur de fond (blanc)
-    SDL_RenderClear(renderer);
-
-    // Récupération des données nécessaires
+void animationBarre(SDL_Renderer *renderer, const heatEquationBarre &barre, const std::vector<double> &solution)  {
+    // Récupérer les données nécessaires de la barre
     std::vector<double> xi = barre.getXi();
-    std::vector<double> solution = barre.getSolution();
-    double maxTemperature = *std::max_element(solution.begin(), solution.end());
-    double minTemperature = *std::min_element(solution.begin(), solution.end());
 
-    // Dessin de la barre en fonction des températures
-    for (std::size_t i = 0; i < xi.size(); ++i) {
-        double val = solution[i];
-        double qte = (val - minTemperature) / (maxTemperature - minTemperature);  // Échelle entre 0 et 1
+    // Définir les propriétés du rectangle représentant la barre
+    SDL_Rect rect;
+    rect.w = 2;  // Largeur du rectangle
+    rect.h = 50; // Hauteur du rectangle
 
-        SDL_Rect rect;
-        rect.x = static_cast<int>(xi[i] * 640);  // Ajustez la position en fonction de votre échelle
-        rect.y = 200;
-        rect.w = 2;  // Largeur de chaque section de la barre
-        rect.h = static_cast<int>(50 * qte);  // Hauteur en fonction de la température
+    // Dessiner la barre en fonction de la température
+    for (size_t i = 0; i < solution.size(); ++i) {
+        rect.x = static_cast<int>(xi[i]); // Position en x basée sur les coordonnées de la barre
+        rect.y = 400 - static_cast<int>(solution[i]); // Position en y basée sur la température
 
-        // Choix des couleurs en fonction de qte
-        SDL_SetRenderDrawColor(renderer, static_cast<Uint8>(255 * qte), 0, static_cast<Uint8>(255 * (1 - qte)), 255);
+        // Choisir la couleur en fonction de la température
+        if (solution[i] < 200) {
+            SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255); // Bleu
+        } else if (solution[i] < 400) {
+            SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255); // Vert
+        } else {
+            SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); // Rouge
+        }
+
+        // Remplir le rectangle avec la couleur définie
         SDL_RenderFillRect(renderer, &rect);
+
     }
 }
+
+

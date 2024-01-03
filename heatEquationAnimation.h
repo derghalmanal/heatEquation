@@ -10,7 +10,7 @@ SDL_Window *initWindow();
 
 SDL_Renderer *initRenderer(SDL_Window *window);
 
-void animationBarre(SDL_Renderer *renderer, const heatEquationBarre &barre);
+void animationBarre(SDL_Renderer *renderer, const heatEquationBarre &barre,  const std::vector<double> &solution);
 
 
 #endif
