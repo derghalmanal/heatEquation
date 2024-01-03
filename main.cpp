@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include "heatEquationBarre.h"
+#include "heatEquationAnimation.h"
+
 
 
 int main() {
@@ -30,6 +32,13 @@ int main() {
 
     double pas = t_max / 100.0;
 
+    // Initialisation de la fenêtre et du renderer SDL
+    SDL_Window *window = initWindow();
+    SDL_Renderer *renderer = initRenderer(window);
+
+    // Durée entre chaque frame de l'animation en millisecondes
+    int frameDelay = 160;  // Vous pouvez ajuster cela en fonction de votre préférence
+
     for (double i = 0.0; i <= t_max; i += pas) {
         std::vector<double> solution = barre.laasonenSolve(i, num_materiau);
         std::cout << "Solution à t = " << i << " : ";
@@ -37,7 +46,25 @@ int main() {
             std::cout << solution[j] << " ";
         }
         std::cout << std::endl;
+
+        // Affichage de la barre en SDL
+        animationBarre(renderer, barre);
+
+        // Actualisation de la fenêtre SDL
+        SDL_RenderPresent(renderer);
+
+        // Pause entre les frames
+        SDL_Delay(frameDelay);
+
+        // Effacement de la fenêtre pour la prochaine frame
+        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+        SDL_RenderClear(renderer);
     }
+
+    // Libération des ressources SDL
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
 
     return 0;
 }
