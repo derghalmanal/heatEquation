@@ -46,7 +46,8 @@ SDL_Renderer *initRenderer(SDL_Window *window){
 
 
 
-void animationBarre(SDL_Renderer *renderer, const std::vector<double> &solution )  {
+void animationBarre(SDL_Renderer *renderer, double u0, const std::vector<double> &solution)  {
+
 // Définir les propriétés du rectangle représentant la barre
     SDL_Rect rect;
     rect.w = 1;  // Largeur du rectangle
@@ -59,17 +60,26 @@ void animationBarre(SDL_Renderer *renderer, const std::vector<double> &solution 
         double cls = solution[i] - 273.15 ;
 
         // Choisir la couleur en fonction de la température
-        if (cls <= 13) {
+        /*
+        if (cls = u0) {
             SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255); // Bleu
         } else if (cls < 20) {
             SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255); // Vert
         } else {
             SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); // Rouge
         }
+        */
+        auto maxSolution = *std::max_element(solution.begin(), solution.end());
+        // Calculer la couleur en fonction de la température
+        double qte = (cls - u0) / (maxSolution - u0);
+
+        SDL_SetRenderDrawColor(renderer, 0, 0 + qte * 255, 255 - qte * 255, 255);
 
         // Remplir la section du rectangle avec la couleur définie
         SDL_RenderFillRect(renderer, &rect);
     }
+
+    
 }
 
 

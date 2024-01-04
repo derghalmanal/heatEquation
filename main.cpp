@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include "heatEquationBarre.h"
 #include "heatEquationAnimation.h"
 
@@ -44,11 +45,11 @@ int main() {
         std::cout << "Solution à t = " << i << " : ";
         for (std::size_t j = 0; j < solution.size(); ++j) {
             std::cout << solution[j] << " ";
-        }
+        } 
         std::cout << std::endl;
 
         // Affichage de la barre en SDL
-        animationBarre(renderer, solution);
+        animationBarre(renderer, u0, solution);
 
         // Actualisation de la fenêtre SDL
         SDL_RenderPresent(renderer);
