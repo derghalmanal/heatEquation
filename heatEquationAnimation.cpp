@@ -50,14 +50,14 @@ void animationBarre(SDL_Renderer *renderer, const heatEquationBarre &barre, cons
     // Récupérer les données nécessaires de la barre
     std::vector<double> xi = barre.getXi();
 
-    // Définir les propriétés du rectangle représentant la barre
-    SDL_Rect rect;
-    rect.w = 2;  // Largeur du rectangle
-    rect.h = 50; // Hauteur du rectangle
-    rect.y = 250 ; // 480 - static_cast<int>(solution[i]); // Position en y basée sur la température
 
     // Dessiner la barre en fonction de la température
     for (size_t i = 0; i < solution.size(); ++i) {
+            // Définir les propriétés du rectangle représentant la barre
+    SDL_Rect rect;
+        rect.w = 2;  // Largeur du rectangle
+        rect.h = 50; // Hauteur du rectangle
+        rect.y = 250 ; // 480 - static_cast<int>(solution[i]); // Position en y basée sur la température
         rect.x = static_cast<int>(xi[i]) + 100; // Position en x basée sur les coordonnées de la barre
 
         // Choisir la couleur en fonction de la température
