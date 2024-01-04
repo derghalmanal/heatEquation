@@ -8,7 +8,7 @@
 int main() {
 
     // Paramètres nécessaires pour le constructeur
-    int n = 100;
+    int n = 1001;
     double t_max = 16.0;
     double L = 1.0;
     double u0 = 13.0;
@@ -48,7 +48,7 @@ int main() {
         std::cout << std::endl;
 
         // Affichage de la barre en SDL
-        animationBarre(renderer, barre, solution);
+        animationBarre(renderer, solution);
 
         // Actualisation de la fenêtre SDL
         SDL_RenderPresent(renderer);
@@ -58,9 +58,9 @@ int main() {
 
         // Effacement de la fenêtre pour la prochaine frame
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+        SDL_RenderPresent(renderer);
         SDL_RenderClear(renderer);
 
-        SDL_Delay(10);
     }
 
     // Libération des ressources SDL
