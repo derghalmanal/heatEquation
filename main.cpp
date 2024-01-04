@@ -59,6 +59,8 @@ int main() {
         // Effacement de la fenêtre pour la prochaine frame
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
         SDL_RenderClear(renderer);
+
+        SDL_Delay(10);
     }
 
     // Libération des ressources SDL

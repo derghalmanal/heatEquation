@@ -49,35 +49,24 @@ SDL_Renderer *initRenderer(SDL_Window *window){
 void animationBarre(SDL_Renderer *renderer, const heatEquationBarre &barre, const std::vector<double> &solution)  {
     // Récupérer les données nécessaires de la barre
     std::vector<double> xi = barre.getXi();
-
-
+// Définir les propriétés du rectangle représentant la barre
+    SDL_Rect rect;
+    rect.w = 2;  // Largeur du rectangle
+    rect.h = 50; // Hauteur du rectangle
+    rect.y = 250; // Position en y basée sur la température
     // Dessiner la barre en fonction de la température
     for (size_t i = 0; i < solution.size(); ++i) {
-            // Définir les propriétés du rectangle représentant la barre
-    SDL_Rect rect;
-        rect.w = 2;  // Largeur du rectangle
-        rect.h = 50; // Hauteur du rectangle
-        rect.y = 250 ; // 480 - static_cast<int>(solution[i]); // Position en y basée sur la température
-        rect.x = static_cast<int>(xi[i]) + 100; // Position en x basée sur les coordonnées de la barre
+        rect.x = i + 100; // Position en x basée sur les coordonnées de la barre
 
-        // Choisir la couleur en fonction de la température
-        if (solution[i] < 200) {
-            SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255); // Bleu
-            SDL_RenderFillRect(renderer, &rect);
-            SDL_RenderDrawRect(renderer, &rect);
-        } else if (solution[i] < 400) {
-            SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255); // Vert
-            SDL_RenderFillRect(renderer, &rect);
-            SDL_RenderDrawRect(renderer, &rect);
-        } else {
-            SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); // Rouge
-            SDL_RenderFillRect(renderer, &rect);
-            SDL_RenderDrawRect(renderer, &rect);
-        }
+        // Calculer la couleur en fonction de la température
+        int red = static_cast<int>(std::min(255.0, solution[i])); // Utilisez votre propre logique pour définir les couleurs
+        int green = 0;
+        int blue = static_cast<int>(std::max(0.0, 255.0 - solution[i])); // Utilisez votre propre logique pour définir les couleurs
 
-        // Remplir le rectangle avec la couleur définie
+        SDL_SetRenderDrawColor(renderer, red, green, blue, 255);
+
+        // Remplir la section du rectangle avec la couleur définie
         SDL_RenderFillRect(renderer, &rect);
-
     }
 }
 
