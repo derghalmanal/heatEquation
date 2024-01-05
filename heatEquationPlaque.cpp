@@ -10,8 +10,7 @@ heatEquationPlaque::heatEquationPlaque(int nb_points_discretisation, double t_ma
         t_i_.push_back(i * T_);
     }
 
-    U_ = Matrix(nb_points_discretisation_, nb_points_discretisation_);
-
+    U_ = std::vector<Matrix>(nb_points_discretisation_, Matrix(nb_points_discretisation_, 1));
 }
 
 // Heat source function
@@ -50,29 +49,56 @@ Matrix heatEquationPlaque::tridiagonal_form(const std::vector<double>& a, const 
 }
 
 
-Matrix heatEquationPlaque::block_thomas_algorithm(std::vector<Matrix> B, Matrix D) {
-    int k = B.size();  // number of blocks
-    int n = B[0].rows();  // size of blocks
-    std::vector<Matrix> W(k, Matrix(n, n));
-    Matrix X(k, n);
+std::vector<Matrix> heatEquationPlaque::solve_tridiagonal(std::vector<Matrix> const & lower_diagonal,
+                                    std::vector<Matrix> const & diagonal,
+                                    std::vector<Matrix> const & upper_diagonal,
+                                    std::vector<Matrix> const & rhs)
+{
 
-    for (int i = 1; i < k; ++i) {
-        W[i] = B[i - 1].inverse();
-        B[i] = B[i] - W[i];
-        D.block_assign(i, 0, 1, n, D.block(i, 0, 1, n) - D.block(i - 1, 0, 1, n) * W[i]);
-    }
+            int n = nb_points_discretisation_;
 
-    X.block_assign(k - 1, 0, 1, n,(B[k - 1].inverse() * D.block(k - 1, 0, 1, n).transpose()).transpose());
-    for (int i = k - 2; i >= 0; --i) {
-        X.block_assign(i, 0, 1, n,(B[i].inverse() * (D.block(i, 0, 1, n) - X.block(i + 1, 0, 1, n)).transpose()).transpose());
-    }
+            std::vector<Matrix> upper_diagonal_prime;
+            std::vector<Matrix> rhs_prime;
+            std::vector<Matrix> solution;
 
-    return X;
+            upper_diagonal_prime.resize(n - 1);
+            rhs_prime.resize(n);
+            solution.resize(n);
+
+            for(int i = 0; i < n - 1; i++){
+                if(i == 0){
+                    // C_0' = B_0.inv() * C_0
+                    upper_diagonal_prime[0] = diagonal[0].inverse() * upper_diagonal[0];
+                }
+                else{
+                    // C_i' = (B_i - A_{i-1} * C_{i-1}').inv() * C[i]
+                    upper_diagonal_prime[i] = (diagonal[i] - lower_diagonal[i - 1] * upper_diagonal_prime[i - 1]).inverse()
+                                              * upper_diagonal[i];
+                }
+            }
+
+
+            // D_0' = B_0.inv() * D_0
+            rhs_prime[0] = diagonal[0].inverse() * rhs[0];
+            for(int i = 1; i < n; i++){
+                // D_i' = (B_i.inv() - A_{i-1} * C_{i-1}').inv() * (D_i - A_{i-1} * D_{i-1}')
+                rhs_prime[i] = (diagonal[i] - lower_diagonal[i - 1] * upper_diagonal_prime[i - 1]).inverse()
+                               * (rhs[i] - lower_diagonal[i - 1] * rhs_prime[i - 1]);
+            }
+
+            // X_{n-1} = D_{n-1}'
+            solution[solution.size() - 1] = rhs_prime.at(diagonal.size()-1);
+            for(int i = n - 2; i >= 0; i--){
+                // X_i = D_{n-1}' - C_i' * X_{i+1}
+                solution[i] = rhs_prime[i] - upper_diagonal_prime[i] * solution[i+1];
+            }
+
+            return solution;
 }
 
 
 
-Matrix heatEquationPlaque::laasonenSolve(double at_time, int num_materiau) {
+std::vector<Matrix> heatEquationPlaque::laasonenSolve(double at_time, int num_materiau) {
     int n = nb_points_discretisation_;
     double s = s_[num_materiau];
 
@@ -81,43 +107,47 @@ Matrix heatEquationPlaque::laasonenSolve(double at_time, int num_materiau) {
     std::vector<double> c(n - 1, -s);
 
     std::vector<Matrix> B;
+    std::vector<Matrix> Lower;
+    std::vector<Matrix> Upper;
     for (int i = 0; i < n; ++i) {
-        Matrix Btemp = tridiagonal_form(a, b, c) / (-s);
+        Matrix Btemp = tridiagonal_form(a, b, c);
+        Matrix Lower_temp = -s*Matrix::createIdentity(n);
         B.push_back(Btemp);
+        Lower.push_back(Lower_temp);
+        Upper.push_back(Lower_temp);
     }
 
-    Matrix D(n, n);
+    std::vector<Matrix> D = std::vector<Matrix>(n, Matrix(n, 1));
 
-    // Initialize D with u0_
     for (int j = 0; j < n; ++j) {
         for (int k = 0; k < n; ++k) {
-            D(j, k) = u0_;
-            U_(j, k) = u0_;
+            D[j](k, 0) = u0_;
+            U_[j](k, 0) = u0_;
         }
     }
 
     if (at_time != 0.0) {
         for (double t = 0.0; t <= at_time; t += T_) {
             for (int j = 0; j < n; ++j) {
-                D(0, j) = u0_ + (T_ * heatSource(x_i_[0], y_i_[j])) / (c_[num_materiau] * p_[num_materiau]) + s * u0_;
-                D(n - 1, j) = u0_ + (T_ * heatSource(x_i_[n - 1], y_i_[j])) / (c_[num_materiau] * p_[num_materiau]) + s * u0_;
+                D[0](j,0) = u0_ + (T_ * heatSource(x_i_[0], y_i_[j])) / (c_[num_materiau] * p_[num_materiau]) + s * u0_;
+                D[n-1](j,0) = u0_ + (T_ * heatSource(x_i_[n - 1], y_i_[j])) / (c_[num_materiau] * p_[num_materiau]) + s * u0_;
             }
 
             for (int i = 1; i < n - 1; ++i) {
-                D(i, 0) = u0_ + (T_ * heatSource(x_i_[i], y_i_[0])) / (c_[num_materiau] * p_[num_materiau]) + s * u0_;
-                D(i, n - 1) = u0_ + (T_ * heatSource(x_i_[i], y_i_[n - 1])) / (c_[num_materiau] * p_[num_materiau]) + s * u0_;
+                D[i](0, 0) = u0_ + (T_ * heatSource(x_i_[i], y_i_[0])) / (c_[num_materiau] * p_[num_materiau]) + s * u0_;
+                D[i](n - 1,0) = u0_ + (T_ * heatSource(x_i_[i], y_i_[n - 1])) / (c_[num_materiau] * p_[num_materiau]) + s * u0_;
 
                 for (int j = 1; j < n - 1; ++j) {
-                    D(i, j) = U_(i, j) + (T_ * heatSource(x_i_[i], y_i_[j])) / (c_[num_materiau] * p_[num_materiau]);
+                    D[i](j,0) = U_[i](j, 0) + (T_ * heatSource(x_i_[i], y_i_[j])) / (c_[num_materiau] * p_[num_materiau]);
                 }
             }
 
-            D(0, 0) = u0_ + (T_ * heatSource(x_i_[0], y_i_[0])) / (c_[num_materiau] * p_[num_materiau]) + 2 * s * u0_;
-            D(0, n - 1) = u0_ + (T_ * heatSource(x_i_[0], y_i_[n - 1])) / (c_[num_materiau] * p_[num_materiau]) + 2 * s * u0_;
-            D(n - 1, 0) = u0_ + (T_ * heatSource(x_i_[n - 1], y_i_[0])) / (c_[num_materiau] * p_[num_materiau]) + 2 * s * u0_;
-            D(n - 1, n - 1) = u0_ + (T_ * heatSource(x_i_[n - 1], y_i_[n - 1])) / (c_[num_materiau] * p_[num_materiau]) + 2 * s * u0_;
+            D[0](0, 0) = u0_ + (T_ * heatSource(x_i_[0], y_i_[0])) / (c_[num_materiau] * p_[num_materiau]) + 2 * s * u0_;
+            D[0](n - 1,0) = u0_ + (T_ * heatSource(x_i_[0], y_i_[n - 1])) / (c_[num_materiau] * p_[num_materiau]) + 2 * s * u0_;
+            D[n-1](0, 0) = u0_ + (T_ * heatSource(x_i_[n - 1], y_i_[0])) / (c_[num_materiau] * p_[num_materiau]) + 2 * s * u0_;
+            D[n-1](n - 1, 0) = u0_ + (T_ * heatSource(x_i_[n - 1], y_i_[n - 1])) / (c_[num_materiau] * p_[num_materiau]) + 2 * s * u0_;
 
-            U_ = block_thomas_algorithm(B, D / (-s));
+            U_ = solve_tridiagonal(Lower, B, Upper, D);
         }
     }
 

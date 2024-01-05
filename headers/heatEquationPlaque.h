@@ -20,7 +20,7 @@ class heatEquationPlaque : public heatEquationBase<2> {
         std::vector<double> y_i_ ; /*!<points du maillage y_i */
         std::vector<double> t_i_ ; /*!<points du maillage t_i */
         std::vector<double> source_chaleur_ ; /*!<source de chaleur F , plusieurs valeurs de F en fonction de x donc F même taille que x */
-        Matrix U_; /*!<matrice U qui contient les valeurs de la solution à chaque pas de temps */
+        std::vector<Matrix> U_; /*!<vecteur des matrices U_i de la solution du système SU = D */
             // |B C 0||u1|=|d1|
             // |A B C||u2| |d2|
             // |0 A B||u3| |d3|
@@ -64,29 +64,27 @@ class heatEquationPlaque : public heatEquationBase<2> {
         /**
         * \brief Méthode qui effectue l'algorithme de Thomas pour résoudre un système tridiagonal lorsque on
         * a un système avec des matrices par blocs
-        * \param B : vecteur des matrices B_i de la diagonale principale
-        * \param D : matrice D de la partie droite du système SU = D
-        * \return la matrice U de la solution du système SU = D
+        * \param lower_diagonal : vecteur des matrices de la diagonale inférieure de la matrice B
+        * \param diagonal : vecteur des matrices de la diagonale principale de la matrice B
+        * \param upper_diagonal : vecteur des matrices de la diagonale supérieure de la matrice B
+        * \param rhs : vecteur des matrices du second membre du système
+        * \return le vecteur des matrices U_i de la solution du système SU = D
         */
 
-        Matrix block_thomas_algorithm(std::vector<Matrix> B, Matrix D);
+        std::vector<Matrix> solve_tridiagonal(std::vector<Matrix> const & lower_diagonal,
+                                    std::vector<Matrix> const & diagonal,
+                                    std::vector<Matrix> const & upper_diagonal,
+                                    std::vector<Matrix> const & rhs);
 
         /**
         * \brief Méthode qui calcule la matrice de solution U à chaque pas de temps pour retourner la solution
         * au temps at_time 
         * \param at_time : temps auquel on veut la solution
         * \param num_materiau : numéro du matériau de la barre pour lequel on veut la solution
-        * \return la matrice U de la solution au temps at_time
+        * \return le vecteur des matrices U_i de la solution du système SU = D
         */
 
-        Matrix laasonenSolve(double at_time, int num_materiau);
-
-        /**
-        * \brief Méthode qui renvoie T_i, le vecteur des points du maillage en temps
-        * \return le vecteur des points du maillage en temps
-        */
-
-        std::vector<double> getTi() const {return t_i_;};
+        std::vector<Matrix> laasonenSolve(double at_time, int num_materiau);
 
         
 

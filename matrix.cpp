@@ -67,8 +67,6 @@ Matrix& Matrix::operator=(const Matrix& m)
 
 Matrix& Matrix::operator-=(const Matrix& m) {
     if (rows_ != m.rows_ || cols_ != m.cols_) {
-        // Handle mismatched dimensions, throw an exception, or handle it appropriately.
-        // For now, let's print an error and exit.
         std::cerr << "Error: Matrix dimensions do not match in operator-=" << std::endl;
         exit(EXIT_FAILURE);
     }
@@ -219,39 +217,6 @@ Matrix Matrix::solve(Matrix A, Matrix b)
     return x;
 }
 
-Matrix Matrix::block(int startRow, int startCol, int numRows, int numCols) const {
-    if (startRow < 0 || startCol < 0 || numRows <= 0 || numCols <= 0 ||
-        startRow + numRows > rows_ || startCol + numCols > cols_) {
-        std::cerr << "Error: Invalid block parameters in Matrix::block" << std::endl;
-        exit(EXIT_FAILURE);
-    }
-
-    Matrix result(numRows, numCols);
-
-    for (int i = 0; i < numRows; ++i) {
-        for (int j = 0; j < numCols; ++j) {
-            result(i, j) = p[startRow + i][startCol + j];
-        }
-    }
-
-    return result;
-}
-
-
-void Matrix::block_assign(int startRow, int startCol, int numRows, int numCols, const Matrix& source) {
-    if (startRow < 0 || startCol < 0 || numRows <= 0 || numCols <= 0 ||
-        startRow + numRows > rows_ || startCol + numCols > cols_) {
-        std::cerr << "Error: Invalid block parameters in Matrix::block" << std::endl;
-        exit(EXIT_FAILURE);
-    }
-
-    for (int i = 0; i < numRows; ++i) {
-        for (int j = 0; j < numCols; ++j) {
-            p[startRow + i][startCol + j] = source(i, j);
-        }
-    }
-}
-
 
 Matrix Matrix::augment(Matrix A, Matrix B)
 {
@@ -379,7 +344,7 @@ Matrix Matrix::rowReduceFromGaussian()
 
 
 
-Matrix Matrix::inverse()
+Matrix Matrix::inverse() const
 {
     Matrix I = Matrix::createIdentity(rows_);
     Matrix AI = Matrix::augment(*this, I);

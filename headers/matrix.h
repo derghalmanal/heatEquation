@@ -155,34 +155,6 @@ class Matrix {
         */
         static Matrix solve(Matrix, Matrix);
 
-        /**
-         * \brief Extrait une sous-matrice à partir de la matrice actuelle.
-         *
-         * Cette fonction extrait une sous-matrice de la matrice actuelle, en commençant à la position (startRow, startCol)
-         * et en sélectionnant numRows lignes et numCols colonnes.
-         *
-         * \param startRow : Indice de la première ligne de la sous-matrice.
-         * \param startCol : Indice de la première colonne de la sous-matrice.
-         * \param numRows : Nombre de lignes de la sous-matrice.
-         * \param numCols : Nombre de colonnes de la sous-matrice.
-         * \return Matrix : Sous-matrice extraite.
-         */
-        Matrix block(int startRow, int startCol, int numRows, int numCols) const;
-
-        /**
-         * \brief Assigne les valeurs d'une matrice source à une sous-matrice de la matrice actuelle.
-         *
-         * Cette fonction assigne les valeurs de la matrice source à la sous-matrice de la matrice actuelle,
-         * en commençant à la position (startRow, startCol) et en sélectionnant numRows lignes et numCols colonnes.
-         *
-         * \param startRow : Indice de la première ligne de la sous-matrice.
-         * \param startCol : Indice de la première colonne de la sous-matrice.
-         * \param numRows : Nombre de lignes de la sous-matrice.
-         * \param numCols : Nombre de colonnes de la sous-matrice.
-         * \param source : Matrice source dont les valeurs seront assignées à la sous-matrice.
-         */
-        void block_assign(int startRow, int startCol, int numRows, int numCols, const Matrix& source);
-
 
         /**
          * \brief Permet d'augmenter une matrice ce qui veut dire de concaténer deux matrices
@@ -193,11 +165,15 @@ class Matrix {
         static Matrix augment(Matrix, Matrix);
 
         /**
-         * \brief Permet de résoudre un système d'équations linéaires
-         * \param Matrix : matrice à résoudre
-         * \return Matrix : matrice résolue
-        */
+         * \brief Effectue l'élimination de Gauss sur une matrice.
+         *
+         * Cette fonction applique l'élimination de Gauss pour transformer une matrice
+         * en sa forme échelonnée réduite.
+         *
+         * \return La forme échelonnée réduite de la matrice après l'élimination de Gauss.
+         */
         Matrix gaussianEliminate();
+
 
         /**
          * \brief Permet de réduire une matrice à sa forme échelonnée réduite
@@ -209,7 +185,7 @@ class Matrix {
          * \brief Permet de calculer l'inverse d'une matrice
          * \return Matrix : matrice inverse
         */
-        Matrix inverse();
+        Matrix inverse() const;
 
         /**
          * \return Renvoie le nombre de lignes d'une matrice

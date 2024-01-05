@@ -12,6 +12,8 @@
  * \brief {classe qui hérite de heatEquationBase pour l'équation de la chaleur pour une barre (objet à 1 dimension)}
  * 
  */
+
+
 class heatEquationBarre : public heatEquationBase<1> {
 
 
