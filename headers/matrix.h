@@ -2,6 +2,7 @@
 #define __MATRIX_H__
 
 #include <iostream>
+#include <vector>
 
 /**
  * \class {matrix}
@@ -197,6 +198,27 @@ class Matrix {
         */
         int cols() const {return cols_;}
 
+
+        /**
+         * \brief Permet de récupérer une ligne de la matrice
+         * \param int : indice de la ligne
+         * \return std::vector<double> : ligne de la matrice
+        */
+        const std::vector<double> getRow(int row) const;
+
+        /**
+         * \brief Permet de récupérer la valeur maximale de la matrice
+         * \param Matrix : matrice 
+         * \return double : valeur maximale de la matrice
+        */
+        double max() const;
+
+        /**
+         * \brief Permet de récupérer la valeur maximale dans un vecteur de matrice
+         * \param std::vector<Matrix> : vecteur de matrice
+         * \return double : valeur maximale dans le vecteur de matrice
+        */
+        static double max(const std::vector<Matrix>&);
 
 };
 

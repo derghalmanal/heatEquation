@@ -368,6 +368,37 @@ void Matrix::allocSpace()
     }
 }
 
+const std::vector<double> Matrix::getRow(int row) const
+{
+    std::vector<double> ret;
+    for (int i = 0; i < cols_; ++i) {
+        ret.push_back(p[row][i]);
+    }
+    return ret;
+}
+
+double Matrix::max() const
+{
+    double max = p[0][0];
+    for (int i = 0; i < rows_; ++i) {
+        for (int j = 0; j < cols_; ++j) {
+            if (p[i][j] > max) {
+                max = p[i][j];
+            }
+        }
+    }
+    return max;
+}
+
+double Matrix::max(const std::vector<Matrix>& m){
+    double max = 0;
+    for (size_t i = 0; i < m.size(); ++i) {
+        if (m[i].max() > max) {
+            max = m[i].max();
+        }
+    }
+    return max;
+}
 
 
 

@@ -106,9 +106,8 @@ std::vector<Matrix> heatEquationPlaque::laasonenSolve(double at_time, int num_ma
     std::vector<double> b(n, 1.0 + (4.0 * s));
     std::vector<double> c(n - 1, -s);
 
-    std::vector<Matrix> B;
-    std::vector<Matrix> Lower;
-    std::vector<Matrix> Upper;
+    std::vector<Matrix> B , Lower, Upper;
+    
     for (int i = 0; i < n; ++i) {
         Matrix Btemp = tridiagonal_form(a, b, c);
         Matrix Lower_temp = -s*Matrix::createIdentity(n);
@@ -150,6 +149,5 @@ std::vector<Matrix> heatEquationPlaque::laasonenSolve(double at_time, int num_ma
             U_ = solve_tridiagonal(Lower, B, Upper, D);
         }
     }
-
     return U_;
 }
