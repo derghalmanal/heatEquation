@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include "heatEquationBarre.h"
-#include "heatEquationAnimation.h"
+#include "headers/heatEquationBarre.h"
+#include "headers/heatEquationAnimation.h"
 
 
 

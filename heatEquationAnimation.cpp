@@ -1,5 +1,5 @@
-#include "heatEquationAnimation.h"
-#include "heatEquationBarre.h"
+#include "headers/heatEquationAnimation.h"
+#include "headers/heatEquationBarre.h"
 #include <algorithm>
 
 

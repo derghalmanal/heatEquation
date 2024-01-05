@@ -4,12 +4,7 @@
  * @brief Implémentation de la classe pour l'équation de la chaleur pour un objet à 1 dimension
  * 
  */
-
-#include <iostream>
-#include <vector>
-#include <cmath>
-
-#include "heatEquationBarre.h"
+#include "headers/heatEquationBarre.h"
 
 
 
@@ -72,14 +67,14 @@ std::vector<double> heatEquationBarre::laasonenSolve(double at_time, int num_mat
     C_.insert(C_.end(), 0.0);
 
     if (at_time != 0) {
-        for (double i = 0; i < at_time; i++) {
+        for (double i = 0; i < at_time; i+=T_) {
 
-            D_[0] = U_[0] + (s_[num_materiau] * u0_) + (T_ * heatSource(x_i_[0]) / (p_[num_materiau] * c_[num_materiau]));
+            D_[0] = u0_ + (s_[num_materiau] * u0_) + (T_ * heatSource(x_i_[0]) / (p_[num_materiau] * c_[num_materiau]));
 
             for (int j = 1; j < nb_points_discretisation_-1; j++) {
                 D_[j] = U_[j] + (T_ * heatSource(x_i_[j]) / (p_[num_materiau] * c_[num_materiau]));
             }
-            D_[nb_points_discretisation_ - 1] = U_[nb_points_discretisation_-1] + (s_[num_materiau] * u0_) + (T_ * heatSource(x_i_[nb_points_discretisation_ - 1]) / (p_[num_materiau] * c_[num_materiau]));
+            D_[nb_points_discretisation_ - 1] = u0_ + (s_[num_materiau] * u0_) + (T_ * heatSource(x_i_[nb_points_discretisation_ - 1]) / (p_[num_materiau] * c_[num_materiau]));
 
             U_ = thomas_algorithm(A_, B_, C_, D_);
         }
@@ -93,18 +88,7 @@ std::vector<double> heatEquationBarre::laasonenSolve(double at_time, int num_mat
 }
 
 
-std::vector<double> heatEquationBarre::getSolution() const {
-    return U_;
-}
-
-std::vector<double> heatEquationBarre::getXi() const {
-    return x_i_;
-}
 
 std::vector<double> heatEquationBarre::getTi() const {
     return t_i_;
-}
-
-double heatEquationBarre::getL() const {
-    return L_;
 }
