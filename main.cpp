@@ -21,35 +21,7 @@ int main() {
         SDL_Window *window = initWindow();
         SDL_Renderer *renderer = initRenderer(window);
 
-/*
-        // Durée entre chaque frame de l'animation en millisecondes
-        int frameDelay = 160;
 
-    
-        for (double i = 0.0; i <= t_max; i += pas) {
-            std::vector<double> solution = barre.laasonenSolve(i, num_materiau);
-            std::cout << "Solution à t = " << i << " : ";
-            for (std::size_t j = 0; j < solution.size(); ++j) {
-                std::cout << solution[j] << " ";
-            } 
-            std::cout << std::endl;
-
-            // Affichage de la barre en SDL
-            animationBarre(renderer, u0, solution);
-
-            // Actualisation de la fenêtre SDL
-            SDL_RenderPresent(renderer);
-
-            // Pause entre les frames
-            SDL_Delay(frameDelay);
-
-            // Effacement de la fenêtre pour la prochaine frame
-            SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-            SDL_RenderPresent(renderer);
-            SDL_RenderClear(renderer);
-
-        } 
-        */
 
         std::vector<std::vector<double>> solution ;  // stocke les solutions dans une matrice 
         for(double i = 0.0 ; i <= t_max ; i += pas){
