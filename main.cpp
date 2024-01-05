@@ -4,11 +4,14 @@
 #include "headers/heatEquationPlaque.h"
 #include "headers/heatEquationAnimation.h"
 #include "headers/data.h"
+
 using namespace Data;
 
 int main() {
-    demanderNumeroMateriau();
+
     demanderObjet();
+    demanderNumeroMateriau();
+    
 
     if (choix_objet == 0) {
         heatEquationBarre barre(n, t_max, L, u0, f, lambda, p, c, num_materiau);
@@ -32,14 +35,13 @@ int main() {
 
         animation.animationBarre(u0, solution);
 
-        // Libération des ressources SDL
         SDL_DestroyRenderer(renderer);
         SDL_DestroyWindow(window);
 
 
     } else if (choix_objet == 1) {
         heatEquationPlaque plaque(m, t_max, L, u0, f, lambda, p, c, num_materiau);
-        // Utilisez un vector pour stocker les solutions à chaque instant
+
         std::vector<std::vector<Matrix>> allSolutions;
 
         for (double i = 0.0; i <= t_max; i += pas) {
@@ -61,7 +63,6 @@ int main() {
 
         animation.animationPlaque(u0, allSolutions);
 
-        // Libération des ressources SDL
         SDL_DestroyRenderer(renderer);
         SDL_DestroyWindow(window);
     }

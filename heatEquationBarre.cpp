@@ -1,9 +1,3 @@
-/**
- * @file heatEquationBarre.cpp
- * @author Ania Polidori & Manal Derghal
- * @brief Implémentation de la classe pour l'équation de la chaleur pour un objet à 1 dimension
- * 
- */
 #include "headers/heatEquationBarre.h"
 
 
@@ -85,10 +79,4 @@ std::vector<double> heatEquationBarre::laasonenSolve(double at_time, int num_mat
     C_.clear();
 
     return U_;
-}
-
-
-
-std::vector<double> heatEquationBarre::getTi() const {
-    return t_i_;
 }

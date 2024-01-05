@@ -79,18 +79,20 @@ void HeatEquationAnimation::animationBarre(double u0, const Matrix &solution) {
         SDL_RenderPresent(renderer);
         SDL_RenderClear(renderer);
     }
+
+    SDL_Delay(500);
 }
 
 void HeatEquationAnimation::animationPlaque(double u0, const std::vector<std::vector<Matrix>> &solutions) {
     SDL_Rect rect;
-    rect.w = 50;  // Largeur du rectangle
-    rect.h = 50;  // Hauteur du rectangle
+    rect.w = 50;
+    rect.h = 50;
 
     std::vector<double> maxS(solutions.size(), 0.0);
 
     for (size_t t = 0; t < solutions.size(); t++) {
-        const auto &solution = solutions[t]; // le vecteur des solutions
-        double max = Matrix::max(solution);   // Utilisez la méthode maxInVector
+        const auto &solution = solutions[t];
+        double max = Matrix::max(solution);  
         maxS[t] = max;
     }
 
@@ -98,12 +100,12 @@ void HeatEquationAnimation::animationPlaque(double u0, const std::vector<std::ve
     maxSolution = maxSolution - 273.15;
 
     for (size_t time = 0; time < solutions.size(); time++) {
-        const auto &solution = solutions[time]; // le vecteur des solutions
+        const auto &solution = solutions[time];
 
         for (size_t row = 0; row < solution.size(); row++) {
             for (int col = 0; col < solution[row].rows(); col++) {
-                rect.x = row * 50 + 200;  // Position en x basée sur l'indice de ligne
-                rect.y = col * 50 + (500 - solution[row].rows() * 50) / 2;  // Centrer verticalement
+                rect.x = row * 50 + 200;
+                rect.y = col * 50 + (500 - solution[row].rows() * 50) / 2;
 
                 double cls = solution[row](col, 0) - 273.15;
                 double normalizedQty = (cls - u0) / (maxSolution - u0);
@@ -123,7 +125,6 @@ void HeatEquationAnimation::animationPlaque(double u0, const std::vector<std::ve
         SDL_RenderClear(renderer);
     }
 
-    // Ajoutez une pause finale avant de terminer l'animation
     SDL_Delay(500);
 }
 

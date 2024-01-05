@@ -78,7 +78,7 @@ class heatEquationPlaque : public heatEquationBase<2> {
 
         /**
         * \brief Méthode qui calcule la matrice de solution U à chaque pas de temps pour retourner la solution
-        * au temps at_time 
+        * au temps at_time. On définira à l'intérieur de la méthode la matrice à droite D et la matrice à gauche S
         * \param at_time : temps auquel on veut la solution
         * \param num_materiau : numéro du matériau de la barre pour lequel on veut la solution
         * \return le vecteur des matrices U_i de la solution du système SU = D

@@ -80,12 +80,6 @@ class heatEquationBarre : public heatEquationBase<1> {
         */
         std::vector<double> laasonenSolve(double at_time, int num_materiau);
 
-        /**
-        * \brief Fonction qui retourne le maillage en temps
-        * \return le maillage en temps
-        */
-        std::vector<double> getTi() const;
-
 
 };
 
